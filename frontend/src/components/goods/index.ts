@@ -1,0 +1,1 @@
+export { GoodsTable } from './table'
