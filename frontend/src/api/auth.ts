@@ -1,4 +1,4 @@
-import type { IAuthResponse, ILoginRequest, IRefreshResponse, IUser } from '../types/auth';
+import type { IAuthResponse, ILoginRequest, IRefreshResponse, IUser, IUserAuthError } from '../types/auth';
 
 const API_BASE_URL = '/api/auth';
 
@@ -17,7 +17,7 @@ export const authApi = {
     return response.json();
   },
 
-  getCurrentUser: async (accessToken: string): Promise<IUser> => {
+  getCurrentUser: async (accessToken: string): Promise<IUser | IUserAuthError> => {
     const response = await fetch(`${API_BASE_URL}/me`, {
       method: 'GET',
       headers: {

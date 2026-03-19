@@ -8,6 +8,10 @@ export interface IUser {
   image: string;
 }
 
+export interface IUserAuthError {
+    message: string
+}
+
 export interface IAuthResponse extends IUser {
   accessToken: string;
   refreshToken: string;

@@ -4,31 +4,28 @@ import {
   $user,
   $accessToken,
   $isAuthenticated,
+  $isInitialized,
   $isLoading,
   $error,
   loginRequested,
-  logoutRequested,
   errorCleared,
   initializeAuth,
 } from '../store/authStore';
 import { useCallback } from 'react';
 
 export const useAuth = () => {
-  const [authStore, user, accessToken, isAuthenticated, isLoading, error] = useUnit([
+  const [authStore, user, accessToken, isAuthenticated, isInitialized, isLoading, error] = useUnit([
     $authStore,
     $user,
     $accessToken,
     $isAuthenticated,
+    $isInitialized,
     $isLoading,
     $error,
   ]);
 
   const login = (username: string, password: string, rememberMe: boolean) => {
     loginRequested({ username, password, rememberMe });
-  };
-
-  const logout = () => {
-    logoutRequested();
   };
 
   const clearError = () => {
@@ -44,10 +41,10 @@ export const useAuth = () => {
     user,
     accessToken,
     isAuthenticated,
+    isInitialized,
     isLoading,
     error,
     login,
-    logout,
     clearError,
     init,
   };

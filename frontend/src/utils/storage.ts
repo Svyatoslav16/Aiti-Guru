@@ -1,14 +1,13 @@
-const ACCESS_TOKEN_KEY = "auth_access_token";
-const REFRESH_TOKEN_KEY = "auth_refresh_token";
-const REMEMBER_ME_KEY = "auth_remember_me";
+import type { IUser, IUserAuthError } from '../types/auth';
+
+const ACCESS_TOKEN_KEY = 'auth_access_token';
+const REFRESH_TOKEN_KEY = 'auth_refresh_token';
+const REMEMBER_ME_KEY = 'auth_remember_me';
 
 export const storage = {
   // Access Token
   getAccessToken: (): string | null => {
-    return (
-      localStorage.getItem(ACCESS_TOKEN_KEY) ||
-      sessionStorage.getItem(ACCESS_TOKEN_KEY)
-    );
+    return localStorage.getItem(ACCESS_TOKEN_KEY) || sessionStorage.getItem(ACCESS_TOKEN_KEY);
   },
 
   setAccessToken: (token: string, rememberMe: boolean): void => {
@@ -26,10 +25,7 @@ export const storage = {
 
   // Refresh Token
   getRefreshToken: (): string | null => {
-    return (
-      localStorage.getItem(REFRESH_TOKEN_KEY) ||
-      sessionStorage.getItem(REFRESH_TOKEN_KEY)
-    );
+    return localStorage.getItem(REFRESH_TOKEN_KEY) || sessionStorage.getItem(REFRESH_TOKEN_KEY);
   },
 
   setRefreshToken: (token: string, rememberMe: boolean): void => {
@@ -51,16 +47,14 @@ export const storage = {
   },
 
   getRememberMe: (): boolean => {
-    return localStorage.getItem(REMEMBER_ME_KEY) === "true";
+    return localStorage.getItem(REMEMBER_ME_KEY) === 'true';
   },
 
-  // Clear all
   clearAuthData: (): void => {
     storage.removeAccessToken();
     storage.removeRefreshToken();
   },
 
-  // Initialize storage based on remember me
   initializeStorage: (): void => {
     const rememberMe = storage.getRememberMe();
     const accessToken = storage.getAccessToken();
@@ -78,4 +72,12 @@ export const storage = {
       }
     }
   },
+};
+
+export const isUser = (obj: IUser | IUserAuthError | undefined): obj is IUser => {
+  if (!obj || 'message' in obj || !obj.id) {
+    return false;
+  }
+
+  return true;
 };
