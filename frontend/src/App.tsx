@@ -4,7 +4,7 @@ import { LoginForm } from './components/login-form';
 // TODO: alias-ы
 import { ThemeProvider } from './providers/theme-provider';
 // TODO: в теории, это уже не компоненты, а страницы
-import { GoodsTable } from './components/goods';
+import { GoodsTable } from './components/goods-table';
 import { AuthGuard } from './components/auth-guard';
 
 const App: React.FC = () => {

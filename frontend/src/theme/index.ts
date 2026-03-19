@@ -13,10 +13,14 @@ const theme = createTheme({
     error: {
       main: '#f44336',
     },
+    grey: {
+        200: '#F3F3F3',
+    }
+    
   },
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-  },
+  //   typography: {
+  //     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  //   },
   components: {
     MuiButton: {
       styleOverrides: {
@@ -44,5 +48,14 @@ const theme = createTheme({
     },
   },
 });
+
+declare module '@mui/material/styles' {
+  interface PaletteBackground {
+    lightGrey?: string;
+  }
+  interface PaletteBackgroundOptions {
+    lightGrey?: string;
+  }
+}
 
 export { theme };

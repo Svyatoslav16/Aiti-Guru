@@ -10,7 +10,7 @@ import {
   loginRequested,
   errorCleared,
   initializeAuth,
-} from '../store/authStore';
+} from '../store/auth-store';
 import { useCallback } from 'react';
 
 export const useAuth = () => {
